@@ -63,9 +63,10 @@ public class KubernetesServicesServerList extends KubernetesServerList {
 	public List<Server> getUpdatedListOfServers() {
 		List<Server> result = new ArrayList<>();
 		Service service = StringUtils.isNotBlank(this.getNamespace())
-				? this.getClient().services().inNamespace(this.getNamespace())
-						.withName(this.getServiceId()).get()
-				: this.getClient().services().withName(this.getServiceId()).get();
+				|| getProperties().getAllNamespaces()
+						? this.getClient().services().inNamespace(this.getNamespace())
+								.withName(this.getServiceId()).get()
+						: this.getClient().services().withName(this.getServiceId()).get();
 		if (service != null) {
 			if (LOG.isDebugEnabled()) {
 				LOG.debug("Found Service[" + service.getMetadata().getName() + "]");

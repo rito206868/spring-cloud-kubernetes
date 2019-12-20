@@ -52,7 +52,7 @@ public class KubernetesEndpointsServerList extends KubernetesServerList {
 	@Override
 	public List<Server> getUpdatedListOfServers() {
 		List<Server> result = new ArrayList<>();
-		Endpoints endpoints = StringUtils.isNotBlank(this.getNamespace())
+		Endpoints endpoints = StringUtils.isNotBlank(this.getNamespace()) || getProperties().getAllNamespaces()
 				? this.getClient().endpoints().inNamespace(this.getNamespace())
 						.withName(this.getServiceId()).get()
 				: this.getClient().endpoints().withName(this.getServiceId()).get();

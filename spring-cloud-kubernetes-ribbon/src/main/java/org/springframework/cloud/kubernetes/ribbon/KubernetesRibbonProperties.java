@@ -41,6 +41,11 @@ public class KubernetesRibbonProperties {
 	private String clusterDomain = "cluster.local";
 
 	/**
+	 * localize pods in all namespaces.
+	 */
+	private Boolean allNamespaces = false;
+
+	/**
 	 * Get cluster domain.
 	 * @return the cluster domain
 	 */
@@ -86,6 +91,14 @@ public class KubernetesRibbonProperties {
 	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Boolean getAllNamespaces() {
+		return allNamespaces;
+	}
+
+	public void setAllNamespaces(Boolean allNamespaces) {
+		this.allNamespaces = allNamespaces;
 	}
 
 }
